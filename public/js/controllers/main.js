@@ -6,6 +6,14 @@ angular.module('foodController', [])
 	$scope.loading = true;
 	$scope.total = 0;
 
+	$scope.images = [
+		'../../assets/images/bg-1.jpg',
+		'../../assets/images/bg-2.jpg',
+		'../../assets/images/bg-3.jpg',
+		'../../assets/images/bg-4.jpg',
+		'../../assets/images/bg-5.jpg'
+	];
+
 	// GET =====================================================================
 	// when landing on the page, get all foods and show them
 	// use the service to get all the foods
