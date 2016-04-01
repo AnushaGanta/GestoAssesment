@@ -12,12 +12,36 @@ function getFoods(res) {
   });
 };
 
+function getTotal(res) {
+  Food.find(function(err, foods) {
+
+    // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+    if (err) {
+      res.send(err);
+    }
+
+    var total = 0;
+    foods.forEach(function(food) {
+      total += food.price;
+    });
+
+    total = total * 1.075;
+
+    res.json(total);
+  });
+};
+
 module.exports = function(app) {
+
   // api ---------------------------------------------------------------------
   // get all foods
   app.get('/api/food', function(req, res) {
     // use mongoose to get all foods in the database
     getFoods(res);
+  });
+
+  app.get('/api/total', function(req, res) {
+    getTotal(res);
   });
 
   // create food and send back all foods after creation
@@ -52,6 +76,6 @@ module.exports = function(app) {
 
   // application -------------------------------------------------------------
   app.get('*', function(req, res) {
-    res.redirect('/'); // load the single view file (angular will handle the page changes on the front-end)
+    res.redirect('/');
   });
 };

@@ -4,6 +4,7 @@ angular.module('foodController', [])
 .controller('mainController', ['$scope', '$http', 'Foods', function($scope, $http, Foods) {
 	$scope.formData = {};
 	$scope.loading = true;
+	$scope.total = 0;
 
 	// GET =====================================================================
 	// when landing on the page, get all foods and show them
@@ -14,6 +15,14 @@ angular.module('foodController', [])
 			$scope.loading = false;
 		});
 
+	Foods.total()
+		.success(function(data) {
+			console.log("Total = " + data);
+			$scope.total = data;
+			$scope.loading = false;
+		});
+
+
 	// CREATE ==================================================================
 	// when submitting the add form, send the text to the node API
 	$scope.createFood = function() {
@@ -21,7 +30,9 @@ angular.module('foodController', [])
 		// validate the formData to make sure that something is there
 		// if form is empty, nothing will happen
 		if ($scope.formData.name != undefined) {
-			console.log("Name : " + $scope.formData.name + "; Price : " + $scope.formData.price);
+			if ($scope.formData.price == undefined)
+				$scope.formData.price = 1;
+
 			$scope.loading = true;
 
 			// call the create function from our service (returns a promise object)
@@ -29,23 +40,40 @@ angular.module('foodController', [])
 
 			// if successful creation, call our get function to get all the new foods
 			.success(function(data) {
-				$scope.loading = false;
+				Foods.total()
+					.success(function(data) {
+						console.log("Total = " + data);
+						$scope.total = data;
+						$scope.loading = false;
+					});
+
 				$scope.formData = {}; // clear the form so our user is ready to enter another
 				$scope.foods = data; // assign our new list of foods
 			});
+
 		}
 	};
 
 	// DELETE ==================================================================
-	// delete a todo after checking it
+	// delete a food after checking it
 	$scope.deleteFood = function(id) {
 		$scope.loading = true;
 
 		Foods.delete(id)
 			// if successful creation, call our get function to get all the new foods
 			.success(function(data) {
-				$scope.loading = false;
+				Foods.total()
+					.success(function(data) {
+						$scope.total = data;
+						$scope.loading = false;
+					});
+
 				$scope.foods = data; // assign our new list of foods
 			});
 	};
+
+	$scope.toggle = function(id) {
+
+	};
+
 }]);
