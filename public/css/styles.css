@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 30px;
   font-family: 'Raleway', sans-serif;
 }
 
@@ -59,12 +60,16 @@ h6 {
 
 #cart {
   margin: 40px 0px;
-  max-height: 500px;
+}
+
+#food-list {
+  max-height: 350px;
   overflow-y: auto;
 }
 
 #cart-form {
   margin: 40px 0px;
+  padding: 25px;
 }
 
 #cart > h4 {
@@ -77,7 +82,7 @@ h6 {
 }
 
 .food {
-  padding: 25px 20px;
+  padding: 20px;
   border-bottom: 1px solid #E0E0E0;
 }
 
@@ -87,6 +92,48 @@ h6 {
 }
 
 .food-price {
-  font-size: 1.65rem;
+  font-size: 1.75rem;
   font-weight: 400;
+}
+
+.btn {
+  border-radius: 1px;
+  outline: none !important;
+}
+
+.btn-primary {
+  background: #F44336;
+  border: 1px solid #F44336;
+}
+
+.btn-primary:hover, 
+.btn-primary:active,
+.btn-primary:focus {
+  background: #E53935;
+  border: 1px solid #E53935;
+}
+
+input[type], input[type]:active, input[type]:focus {
+  border-radius: 0;
+  border: 1px solid #A0A0A0;
+  box-shadow: none;
+  outline: none;
+  padding: 20px 12px;
+  font-size: 1.5rem;
+}
+
+input[type]:active, input[type]:focus {
+  border: 1px solid #909090; 
+}
+
+#cart-form form .btn {
+  font-size: 1.75rem;
+  font-family: 'Oswald', sans-serif;
+  margin-top: 20px;
+}
+
+.input-group-addon {
+  border: 1px solid #A0A0A0;
+  border-radius: 0;
+  background: #F7F7F7;
 }

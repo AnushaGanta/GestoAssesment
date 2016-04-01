@@ -34,14 +34,31 @@
       <h1 id="title" class="underlined text-center">EMERIL FOODS</h1>
       <div class="row">
         <div class="col-sm-4 col-sm-offset-2">
-          <div id="cart-form" class="well"></div>
+          <div id="cart-form" class="well">
+            <form>
+              <div class="row">
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" placeholder="Food Item" ng-model="formData.name">  
+                </div>
+                <div class="col-sm-4">
+                  <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="text" class="form-control" placeholder="Price" ng-model="formData.price">  
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createFood()">ADD</button>
+            </form>
+          </div>
         </div>
         <div class="col-sm-4">
           <div id="cart" class="well">
             <h4>CART</h4>
-            <div class="food" ng-repeat="food in foods">
-              <span class="food-name">{{ food.name }}</span>
-              <span class="food-price pull-right">{{ food.price | currency }}</span>
+            <div id="food-list">
+              <div class="food" ng-repeat="food in foods">
+                <span class="food-name">{{ food.name }}</span>
+                <span class="food-price pull-right">{{ food.price | currency }}</span>
+              </div>
             </div>
           </div>
         </div>
