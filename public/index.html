@@ -11,8 +11,9 @@
     <title>Emeril Foods</title>
 
     <!-- SCROLLS -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- load bootstrap -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
@@ -80,8 +81,19 @@
               <h4 class="heading">CART</h4>
               <div id="food-list">
                 <div class="food" ng-repeat="food in foods">
-                  <span class="food-name">{{ food.name }}</span>
-                  <span class="food-price pull-right">{{ food.price | currency }}</span>
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <span class="food-name">{{ food.name }}</span>
+                    </div>
+                    <div class="col-sm-2">
+                      <span class="food-price">{{ food.price | currency }}</span>
+                    </div>
+                    <div class="col-sm-2">
+                      <button class="btn btn-default" ng-click="deleteFood(food._id)" type="button">
+                        <i class="fa fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
                 </div>
                 <div class="ng-hide" ng-hide="foods">
                   <h5 class="empty-message">No Items in Cart.</h5>
