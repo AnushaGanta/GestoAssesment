@@ -38,12 +38,15 @@ angular.module('foodController', [])
 			// call the create function from our service (returns a promise object)
 			Foods.create($scope.formData)
 			// if successful creation, call our get function to get all the new foods
-			.success(function(data) {
+			.success(function(data, status) {
 				var newFood = data;
 				alertify.success('Added new item');
 				$scope.formData = {}; // clear the form so our user is ready to enter another
 				$scope.foods.push(newFood); // assign our new list of foods
 				updateTotal();
+			})
+			.error(function(err, status) {
+				alertify.error(err.message);
 			});
 
 		}
@@ -53,7 +56,6 @@ angular.module('foodController', [])
 	// delete a food after checking it
 	$scope.deleteFood = function(id) {
 		$scope.loading = true;
-
 		alertify.confirm('Delete item?', function () {
 			Foods.delete(id)
 				// if successful creation, call our get function to get all the new foods
@@ -66,6 +68,9 @@ angular.module('foodController', [])
 							updateTotal();
 						}
 					}
+				})
+				.error(function(err, status) {
+					alertify.error(err.message);
 				});
 		});
 	};
@@ -90,6 +95,9 @@ angular.module('foodController', [])
 			$scope.foods = []; // assign our new list of foods
 			alertify.success('Created your order');
 			$location.url('orders');
+		})
+		.error(function(err, status) {
+			alertify.error(err.message);
 		});
 	}
 
@@ -103,6 +111,9 @@ angular.module('foodController')
 	Orders.get()
 		.success(function(data) {
 			$scope.orders = data;
+		})
+		.error(function(err, status) {
+			alertify.error(err.message);
 		});
 }]);
 
@@ -116,5 +127,8 @@ angular.module('foodController')
 		.success(function(data) {
 			$scope.order = data;
 			$scope.foods = $scope.order[0].foods;
+		})
+		.error(function(err, status) {
+			alertify.error(err.message);
 		});
 }]);

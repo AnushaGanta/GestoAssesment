@@ -10,8 +10,8 @@ angular.module('foodService', [])
 		create: function(foodData) {
 			return $http.post('/api/food', foodData);
 		},
-		delete: function(id) {
-			return $http.delete('/api/food/' + id);
+		delete: function(food_id) {
+			return $http.delete('/api/food/' + food_id);
 		},
 		total: function() {
 			return $http.get('/api/total');

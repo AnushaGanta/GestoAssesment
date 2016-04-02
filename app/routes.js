@@ -6,7 +6,7 @@ function getFoods(res) {
 
     // if there is an error retrieving, send the error. nothing after res.send(err) will execute
     if (err) {
-      res.send(err);
+      res.status(422).send(err).sendStatus(422);
     }
 
     res.json(foods); // return all foods in JSON format
@@ -16,7 +16,7 @@ function getFoods(res) {
 function getFood(food_id, res) {
   Food.find({ _id: food_id }).exec(function(err, food) {
     if(err) {
-      res.send(err);
+      res.status(422).send(err);
     }
 
     res.json(food);
@@ -29,7 +29,7 @@ function getTotal(res) {
 
     // if there is an error retrieving, send the error. nothing after res.send(err) will execute
     if (err) {
-      res.send(err);
+      res.status(422).send(err);
     }
 
     var total = 0;
@@ -47,7 +47,7 @@ function getOrders(res) {
 
   Order.find({}).populate('foods').exec(function(err, orders) {
     if(err) {
-      res.send(err);
+      res.status(422).send(err);
     }
 
     res.json(orders);
@@ -58,7 +58,7 @@ function getOrders(res) {
 function getOrder(order_id, res) {
   Order.find({ _id: order_id }).populate('foods').exec(function(err, order) {
     if(err) {
-      res.send(err);
+      res.status(422).send(err);
     }
 
     res.json(order);
@@ -71,8 +71,7 @@ function createOrder(req, res) {
     foods: req.body.foods
   }, function(err, order) {
     if(err) {
-      console.log(err);
-      res.send(err);
+      res.status(422).send(err);
     }
     console.log(order);
     res.sendStatus(200);
@@ -103,7 +102,7 @@ module.exports = function(app) {
       done: false
     }, function(err, food) {
       if (err)
-        res.send(err);
+        res.status(422).send(err);
 
       // get and return all the foods after you create another
       res.send(food);
@@ -116,9 +115,10 @@ module.exports = function(app) {
     Food.remove({
       _id: req.params.food_id
     }, function(err, food) {
-      if (err)
-        res.send(err);
-      res.send(food);
+      if (err) {
+        res.status(422).send(err);
+      }
+      res.sendStatus(200);
     });
   });
 
