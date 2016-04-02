@@ -1,12 +1,14 @@
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('Food', {
+module.exports = mongoose.model('Food', new mongoose.Schema({
   name: {
-    type: String,
-    default: ''
+    type: String
   },
   price: {
-    type: Number,
-    default: 1
+    type: Number
+  },
+  _creator: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Order'
   }
-});
+}));

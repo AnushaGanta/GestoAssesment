@@ -1,7 +1,7 @@
 angular.module('foodService', [])
 
 // super simple service
-// each function returns a promise object 
+// each function returns a promise object
 .factory('Foods', ['$http', function($http) {
 	return {
 		get: function() {
@@ -15,6 +15,20 @@ angular.module('foodService', [])
 		},
 		total: function() {
 			return $http.get('/api/total');
+		}
+	}
+}])
+
+.factory('Orders', ['$http', function($http) {
+	return {
+		get: function() {
+			return $http.get('/api/orders');
+		},
+		create: function(foodData) {
+			return $http.post('/api/orders', foodData);
+		},
+		getOrder: function(id) {
+			return $http.get('/api/order/' + id);
 		}
 	}
 }]);

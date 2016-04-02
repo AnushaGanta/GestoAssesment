@@ -1,4 +1,5 @@
 var Food = require('./models/food');
+var Order = require('./models/order');
 
 function getFoods(res) {
   Food.find(function(err, foods) {
@@ -28,6 +29,43 @@ function getTotal(res) {
     total = total * 1.075;
 
     res.json(total);
+  });
+};
+
+function getOrders(res) {
+
+  Order.find({}).populate('foods').exec(function(err, orders) {
+    if(err) {
+      res.send(err);
+    }
+
+    res.json(orders);
+
+  });
+};
+
+function getOrder(order_id, res) {
+  Order.find({ _id: order_id }).populate('foods').exec(function(err, order) {
+    if(err) {
+      res.send(err);
+    }
+
+    res.json(order);
+  });
+};
+
+function createOrder(req, res) {
+  Order.create({
+    total_cost: req.body.total_cost,
+    foods: req.body.foods
+  }, function(err, order) {
+    if(err) {
+      console.log(err);
+      res.send(err);
+    }
+    console.log(order);
+    res.sendStatus(200);
+
   });
 };
 
@@ -72,6 +110,18 @@ module.exports = function(app) {
 
       getFoods(res);
     });
+  });
+
+  app.get('/api/orders', function(req, res) {
+    getOrders(res);
+  });
+
+  app.get('/api/order/:order_id', function(req, res) {
+    getOrder(req.params.order_id, res);
+  });
+
+  app.post('/api/orders', function(req, res) {
+    createOrder(req, res);
   });
 
   // application -------------------------------------------------------------
