@@ -1,0 +1,6 @@
+Implemented the challenge to maintain order history.
+
+Description:
+
+Have created a seperate page to see the orders history, so when clicked on the orders tab in main page, it lets you see 
+the orders that are currenlty available in the database.
