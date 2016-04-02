@@ -19,7 +19,7 @@
         </form>
       </div>
     </div>
-    <div class="ng-show" ng-show="foods">
+    <div class="ng-show" ng-show="foods.length != 0">
       <div class="row">
         <div class="well" id="summary">
           <div class="row">
@@ -41,7 +41,7 @@
     <div class="well" id="cart">
       <h4 class="heading">CART</h4>
       <div id="food-list">
-        <div class="ng-show" ng-show="foods">
+        <div class="ng-show" ng-show="foods.length != 0">
           <span class="item-count">{{ foods.length }}
             items in Cart</span>
         </div>
@@ -60,7 +60,7 @@
             </div>
           </div>
         </div>
-        <div class="ng-hide" ng-hide="foods">
+        <div class="ng-show" ng-show="foods.length == 0">
           <span class="empty-message">No Items in Cart.</span>
         </div>
       </div>

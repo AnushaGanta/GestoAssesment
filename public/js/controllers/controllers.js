@@ -7,15 +7,11 @@ angular.module('foodController', [])
 	$scope.loading = true;
 	$scope.total = 0;
 	$scope.orderData = {};
+	$scope.foods = [];
 
 	// GET =====================================================================
 	// when landing on the page, get all foods and show them
 	// use the service to get all the foods
-	Foods.get()
-		.success(function(data) {
-			$scope.foods = data;
-			$scope.loading = false;
-		});
 
 	Foods.total()
 		.success(function(data) {
@@ -41,6 +37,7 @@ angular.module('foodController', [])
 			Foods.create($scope.formData)
 			// if successful creation, call our get function to get all the new foods
 			.success(function(data) {
+				var newFood = data;
 				Foods.total()
 					.success(function(data) {
 						$scope.total = data;
@@ -48,7 +45,8 @@ angular.module('foodController', [])
 						alertify.success('Added new item');
 					});
 				$scope.formData = {}; // clear the form so our user is ready to enter another
-				$scope.foods = data; // assign our new list of foods
+				$scope.foods.push(newFood); // assign our new list of foods
+				console.log($scope.foods);
 			});
 
 		}
@@ -63,6 +61,7 @@ angular.module('foodController', [])
 			Foods.delete(id)
 				// if successful creation, call our get function to get all the new foods
 				.success(function(data) {
+					var _removed = data;
 					Foods.total()
 						.success(function(data) {
 							$scope.total = data;
@@ -70,7 +69,11 @@ angular.module('foodController', [])
 							alertify.error('Successfully removed item');
 						});
 
-					$scope.foods = data; // assign our new list of foods
+					for(var i = 0; i < $scope.foods.length; i++) {
+						if($scope.foods[i]._id == id) {
+							$scope.foods.splice(i, 1);
+						}
+					}
 				});
 		});
 	};

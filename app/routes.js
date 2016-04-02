@@ -95,7 +95,7 @@ module.exports = function(app) {
         res.send(err);
 
       // get and return all the foods after you create another
-      getFoods(res);
+      res.send(food);
     });
 
   });
@@ -107,8 +107,7 @@ module.exports = function(app) {
     }, function(err, food) {
       if (err)
         res.send(err);
-
-      getFoods(res);
+      res.send(food);
     });
   });
 
