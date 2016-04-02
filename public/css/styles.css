@@ -67,6 +67,11 @@ h6 {
   overflow-y: auto;
 }
 
+#orders {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
 #cart-form form {
   padding: 25px;
 }
@@ -84,7 +89,7 @@ h6 {
   border-bottom: 1px solid #E0E0E0;
 }
 
-.food {
+.food, .order {
   padding: 20px;
   border-bottom: 1px solid #E0E0E0;
   font-size: 1.45rem;
@@ -169,4 +174,8 @@ input[type]:active, input[type]:focus {
   text-align: center;
   padding: 5px;
   color: #000;
+}
+
+.links {
+  margin-top: 50px;
 }

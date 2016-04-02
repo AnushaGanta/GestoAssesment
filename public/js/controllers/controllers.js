@@ -83,9 +83,6 @@ angular.module('foodController', [])
 			$scope.orderData.foods.push($scope.foods[i]._id);
 		}
 
-		console.log($scope.orderData);
-		console.log($scope.total);
-
 		Orders.create($scope.orderData)
 		// if successful creation, call our get function to get all the new foods
 		.success(function(data) {
@@ -100,6 +97,12 @@ angular.module('foodController', [])
 
 
 angular.module('foodController')
-.controller('orderController', ['$scope', '$http', function($scope, $http) {
+.controller('orderController', ['$scope', '$http', 'Orders', 'alertify', function($scope, $http, Orders, alertify) {
+	$scope.orders = [];
 
+	Orders.get()
+		.success(function(data) {
+			$scope.orders = data;
+			alertify.success('Fetched your orders');
+		});
 }]);

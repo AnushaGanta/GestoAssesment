@@ -6,16 +6,25 @@
         <div id="orders-list">
           <div class="order" ng-repeat="order in orders">
             <div class="row">
-              <div class="col-sm-10">
+              <div class="col-sm-1">
+                {{$index + 1}}
+              </div>
+              <div class="col-sm-7">
                 <span class="order-cost">{{ order.total_cost | currency }}</span>
               </div>
-              <div class="col-sm-2">
-                <span class="order-date">{{ order.order_date }}</span>
+              <div class="col-sm-4">
+                <span class="order-date">{{ order.order_date | date }}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="row links">
+  <div class="text-center">
+    <a class="btn btn-primary" ng-href="/#/">Create Order</a>
   </div>
 </div>
