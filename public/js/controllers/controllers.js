@@ -97,12 +97,24 @@ angular.module('foodController', [])
 
 
 angular.module('foodController')
-.controller('orderController', ['$scope', '$http', 'Orders', 'alertify', function($scope, $http, Orders, alertify) {
+.controller('ordersController', ['$scope', '$http', 'Orders', 'alertify', function($scope, $http, Orders, alertify) {
 	$scope.orders = [];
 
 	Orders.get()
 		.success(function(data) {
 			$scope.orders = data;
-			alertify.success('Fetched your orders');
+		});
+}]);
+
+angular.module('foodController')
+.controller('orderController', ['$scope', '$http', '$routeParams', 'Foods', 'Orders', 'alertify', function($scope, $http, $routeParams, Foods,
+	Orders, alertify) {
+	$scope.order = {};
+	$scope.foods = [];
+
+	Orders.getOrder($routeParams.order_id)
+		.success(function(data) {
+			$scope.order = data;
+			$scope.foods = $scope.order[0].foods;
 		});
 }]);

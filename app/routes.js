@@ -13,6 +13,17 @@ function getFoods(res) {
   });
 };
 
+function getFood(food_id, res) {
+  Food.find({ _id: food_id }).exec(function(err, food) {
+    if(err) {
+      res.send(err);
+    }
+
+    res.json(food);
+
+  })
+};
+
 function getTotal(res) {
   Food.find(function(err, foods) {
 
@@ -121,6 +132,10 @@ module.exports = function(app) {
 
   app.post('/api/orders', function(req, res) {
     createOrder(req, res);
+  });
+
+  app.get('/api/food/:food_id', function(req, res) {
+    getFood(req.params.food_id, res);
   });
 
   // application -------------------------------------------------------------

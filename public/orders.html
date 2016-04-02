@@ -4,7 +4,11 @@
       <div class="well" id="orders">
         <h4 class="heading">ORDERS</h4>
         <div id="orders-list">
-          <div class="order" ng-repeat="order in orders">
+          <div class="ng-show" ng-show="orders.length != 0">
+            <span class="item-count">{{ orders.length }}
+              orders</span>
+          </div>
+          <a class="order" ng-href="/#/order/{{order._id}}" ng-repeat="order in orders">
             <div class="row">
               <div class="col-sm-1">
                 {{$index + 1}}
@@ -16,7 +20,7 @@
                 <span class="order-date">{{ order.order_date | date }}</span>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>

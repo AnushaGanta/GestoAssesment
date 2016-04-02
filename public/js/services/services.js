@@ -15,6 +15,9 @@ angular.module('foodService', [])
 		},
 		total: function() {
 			return $http.get('/api/total');
+		},
+		getFood: function(food_id) {
+			return $http.get('/api/food/' + food_id);
 		}
 	}
 }])

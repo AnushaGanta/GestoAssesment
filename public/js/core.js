@@ -8,6 +8,10 @@ gestoFood.config(function($routeProvider) {
     })
     .when('/orders', {
       templateUrl : '../orders.html',
+      controller  : 'ordersController'
+    })
+    .when('/order/:order_id', {
+      templateUrl : '../order.html',
       controller  : 'orderController'
     })
 });
