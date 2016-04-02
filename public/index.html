@@ -24,6 +24,8 @@
     <!-- load angular -->
     <script src="js/vendor/ng-backstretch.js"></script>
 
+    <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/ngAlertify.js"></script>
+
     <script src="js/controllers/main.js"></script>
     <!-- load up our controller -->
     <script src="js/services/todos.js"></script>
@@ -60,17 +62,19 @@
                 </form>
               </div>
             </div>
-            <div class="row">
-              <div class="well" id="summary">
-                <div class="row">
-                  <div class="col-sm-7">
-                    <h5>TOTAL</h5>
-                  </div>
-                  <div class="col-sm-5">
-                    <button class="btn btn-primary" type="button">
-                      CHECKOUT
-                      {{ total | currency }}
-                    </button>
+            <div class="ng-show" ng-show="foods">
+              <div class="row">
+                <div class="well" id="summary">
+                  <div class="row">
+                    <div class="col-sm-7">
+                      <h5>TOTAL</h5>
+                    </div>
+                    <div class="col-sm-5">
+                      <button class="btn btn-primary" type="button">
+                        CHECKOUT
+                        {{ total | currency }}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -80,6 +84,10 @@
             <div class="well" id="cart">
               <h4 class="heading">CART</h4>
               <div id="food-list">
+                <div class="ng-show" ng-show="foods">
+                  <span class="item-count">{{ foods.length }}
+                    items in Cart</span>
+                </div>
                 <div class="food" ng-repeat="food in foods">
                   <div class="row">
                     <div class="col-sm-8">
@@ -96,7 +104,7 @@
                   </div>
                 </div>
                 <div class="ng-hide" ng-hide="foods">
-                  <h5 class="empty-message">No Items in Cart.</h5>
+                  <span class="empty-message">No Items in Cart.</span>
                 </div>
               </div>
             </div>

@@ -1,1 +1,1 @@
-angular.module('gestoFood', ['foodController', 'foodService', 'ng-backstretch']);
+angular.module('gestoFood', ['foodController', 'foodService', 'ng-backstretch', 'ngAlertify']);

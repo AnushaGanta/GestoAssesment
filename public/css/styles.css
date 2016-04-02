@@ -135,9 +135,11 @@ input[type]:active, input[type]:focus {
 }
 
 .empty-message {
+  display: block;
   font-size: 1.5rem;
   padding: 25px;
   text-align: center;
+  font-weight: 300;
 }
 
 
@@ -155,4 +157,16 @@ input[type]:active, input[type]:focus {
   color: #F44336;
   box-shadow: none;
   background: transparent;
+}
+
+.alertify {
+  z-index: 100;
+}
+
+.item-count {
+  background: #F0F0F0;
+  display: block;
+  text-align: center;
+  padding: 5px;
+  color: #000;
 }
