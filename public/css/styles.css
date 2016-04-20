@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 30px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Papyrus', Fantasy;
 }
 
 .backstretch,
@@ -15,7 +15,7 @@ body {
 }
 
 .overlay {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   z-index: 1;
 }
 
@@ -25,7 +25,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Papyrus',Fantasy;
 }
 
 #title {
@@ -58,7 +58,7 @@ h6 {
   padding: 0px;
 }
 
-#cart, #cart-form, #orders {
+#cart, #cart-form {
   margin: 40px 0px;
 }
 
@@ -67,17 +67,8 @@ h6 {
   overflow-y: auto;
 }
 
-#orders {
-  max-height: 500px;
-  overflow-y: auto;
-}
-
 #cart-form form {
   padding: 25px;
-}
-
-#summary {
-  padding: 10px 40px;
 }
 
 .well > h4.heading {
@@ -89,24 +80,11 @@ h6 {
   border-bottom: 1px solid #E0E0E0;
 }
 
-.food, .order {
+.food {
   padding: 20px;
   border-bottom: 1px solid #E0E0E0;
   font-size: 1.45rem;
   font-weight: 300;
-}
-
-.order{
-  display: block;
-  text-decoration: none;
-  color: #000;
-}
-
-.order:hover,
-.order:focus,
-.order:active {
-  color: #000;
-  background: #F0F0F0;
 }
 
 .btn {

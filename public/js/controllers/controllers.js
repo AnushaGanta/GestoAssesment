@@ -8,6 +8,9 @@ angular.module('foodController', [])
 	$scope.total = 0;
 	$scope.orderData = {};
 	$scope.foods = [];
+	$scope.isActive = function (viewLocation) {
+    return viewLocation === $location.path();
+	};
 
 	// GET =====================================================================
 	// when landing on the page, get all foods and show them
@@ -94,7 +97,7 @@ angular.module('foodController', [])
 			$scope.orderData = {}; // clear the form so our user is ready to enter another
 			$scope.foods = []; // assign our new list of foods
 			alertify.success('Created your order');
-			$location.url('orders');
+			
 		})
 		.error(function(err, status) {
 			alertify.error(err.message);
@@ -105,8 +108,11 @@ angular.module('foodController', [])
 
 
 angular.module('foodController')
-.controller('ordersController', ['$scope', '$http', 'Orders', 'alertify', function($scope, $http, Orders, alertify) {
+.controller('ordersController', ['$scope', '$http', '$location', 'Orders', 'alertify', function($scope, $http, $location, Orders, alertify) {
 	$scope.orders = [];
+	$scope.isActive = function (viewLocation) {
+    return viewLocation === $location.path();
+	};
 
 	Orders.get()
 		.success(function(data) {

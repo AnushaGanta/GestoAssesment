@@ -1,8 +1,10 @@
 <div class="row">
-  <div class="col-sm-4 col-sm-offset-2">
+  <div class="col-sm-4">
+  </div>
+  <div class="col-sm-4">
     <div class="row">
       <div class="well" id="cart-form">
-        <h4 class="heading">ADD ITEM</h4>
+        <h4 class="heading">Add Item to Menu here:</h4>
         <form>
           <div class="row">
             <div class="col-sm-7">
@@ -15,31 +17,21 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-primary btn-block" ng-click="createFood()" type="submit">ADD</button>
+          <div class="col-sm-5">
+          </div>
+          <button class="btn btn-success" ng-click="createFood()" type="button" style="font-family: 'Papyrus'">Add</button>
+          
         </form>
       </div>
     </div>
-    <div class="ng-show" ng-show="foods.length != 0">
-      <div class="row">
-        <div class="well" id="summary">
-          <div class="row">
-            <div class="col-sm-7">
-              <h5>TOTAL</h5>
-            </div>
-            <div class="col-sm-5">
-              <button class="btn btn-primary" ng-click="checkout()" type="button">
-                CHECKOUT
-                {{ total | currency }}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
-  <div class="col-sm-4">
+  </div>
+<div class="row">
+<div class="col-sm-4">
+</div>
+<div class="col-sm-4">
     <div class="well" id="cart">
-      <h4 class="heading">CART</h4>
+      <h4 class="heading">The Items on Menu are:</h4>
       <div id="food-list">
         <div class="ng-show" ng-show="foods.length != 0">
           <span class="item-count">{{ foods.length }}
@@ -54,21 +46,26 @@
               <span class="food-price">{{ food.price | currency }}</span>
             </div>
             <div class="col-sm-2">
-              <button class="btn btn-default" ng-click="deleteFood(food._id)" type="button">
+              <button class="btn btn-default" ng-click="deleteFood(food._id)" type="button" style="font-family: 'Papyrus'">
                 <i class="fa fa-times"></i>
               </button>
             </div>
           </div>
         </div>
         <div class="ng-show" ng-show="foods.length == 0">
-          <span class="empty-message">No Items in Cart.</span>
+          <span class="empty-message">No Items in Menu!</span>
         </div>
       </div>
     </div>
-  </div>
+        <div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">
+              <button class="btn btn-success" ng-click="checkout()" type="button" style="font-family: 'Papyrus'" width="200">
+                Confirm
+                {{ total | currency }}
+              </button>
+            </div>
+    </div>  
 </div>
-<div class="row links">
-  <div class="text-center">
-    <a class="btn btn-primary" ng-href="/#/orders">View All Orders</a>
-  </div>
 </div>
