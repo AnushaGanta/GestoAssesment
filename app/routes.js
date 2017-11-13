@@ -17,6 +17,7 @@ function getFood(food_id, res) {
   Food.find({ _id: food_id }).exec(function(err, food) {
     if(err) {
       res.status(422).send(err);
+      //testing
     }
 
     res.json(food);
